@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EE039490-6462-4DB1-B77B-E706A722DB3C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IERealtyDatabases</RootNamespace>
+    <AssemblyName>IERealtyDatabases</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Databases\DatabaseFactory.cs" />
+    <Compile Include="Databases\SqlServer\IERealtyModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IERealtyModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Databases\SqlServer\IERealtyModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IERealtyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Databases\SqlServer\IERealtyModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IERealtyModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Databases\SqlServer\SqlServerDb.cs" />
+    <Compile Include="Databases\SqlServer\sysdiagram.cs">
+      <DependentUpon>IERealtyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Databases\SqlServer\tblAddress.cs">
+      <DependentUpon>IERealtyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Databases\SqlServer\tblAgent.cs">
+      <DependentUpon>IERealtyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Databases\SqlServer\tblAgentAvaialbleForAppointment.cs">
+      <DependentUpon>IERealtyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Databases\SqlServer\tblBroker.cs">
+      <DependentUpon>IERealtyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Databases\SqlServer\tblBrokerAgent.cs">
+      <DependentUpon>IERealtyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Databases\SqlServer\tblCustomerAppointment.cs">
+      <DependentUpon>IERealtyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IDbManager.cs" />
+    <Compile Include="Models\AppointmentModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <EntityDeploy Include="Databases\SqlServer\IERealtyModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>IERealtyModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Databases\SqlServer\IERealtyModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>IERealtyModel.edmx</DependentUpon>
+      <LastGenOutput>IERealtyModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Databases\SqlServer\IERealtyModel.edmx.diagram">
+      <DependentUpon>IERealtyModel.edmx</DependentUpon>
+    </None>
+    <None Include="Databases\SqlServer\IERealtyModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>IERealtyModel.edmx</DependentUpon>
+      <LastGenOutput>IERealtyModel.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

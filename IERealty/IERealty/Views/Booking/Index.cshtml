@@ -1,0 +1,278 @@
+﻿@model IERealty.Models.AppointmentModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/booking.js"></script>
+
+<!-- Service Section -->
+@using(Html.BeginForm("Index","Booking",FormMethod.Post))
+{
+@Html.AntiForgeryToken()
+<section id="services" class="section services">
+    <div class="container-fluid container-fluid-decrease-top-margin">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <div class="services-content">
+                    <h2 class="text-muted">Schedule</h2>
+                    <div class="schedule-appointment">
+                        <label class="form-group">Select Date</label>
+                        @Html.HiddenFor(model=>model.AppointmentDate,new{@id="hdn_appointment_Date",@name="hdn_appointment_Date"})
+                        @Html.HiddenFor(model=>model.AgentId,new{@id="hdn_agent_id",@name="hdn_agent_id"})
+                        <div id="datepicker"></div>
+                        @Html.ValidationMessageFor(model=>model.AppointmentDate,"",new{@class="text-danger"})
+                        <br />
+                        <label class="form-group">Select Time</label>
+                        
+                        <div id="timeList">
+                            @Html.DropDownListFor(model=>model.TimeListDropDown.SelectedTime,new SelectList(Model.TimeListDropDown.TimeList),new {Class="list", size="9",@id="drpdwn_timelist",@name="drpdwn_timelist"} )
+                            @*@Html.DropDownListFor(model=>model.TimeListDropDown.SelectedTime,new SelectList(Model.TimeListDropDown.TimeList) )*@
+                            
+                            @*<select name="time" id="time" class="list" size="9">
+                                <option value="5:00 AM">5:00 AM</option>
+                                <option value="5:15 AM">5:15 AM</option>
+                                <option value="5:30 AM">5:30 AM</option>
+                                <option value="5:45 AM">5:45 AM</option>
+
+                                <option value="6:00 AM">6:00 AM</option>
+                                <option value="6:15 AM">6:15 AM</option>
+                                <option value="6:30 AM">6:30 AM</option>
+                                <option value="6:45 AM">6:45 AM</option>
+
+                                <option value="7:00 AM">7:00 AM</option>
+                                <option value="7:15 AM">7:15 AM</option>
+                                <option value="7:30 AM">7:30 AM</option>
+                                <option value="7:45 AM">7:45 AM</option>
+
+                                <option value="8:00 AM">8:00 AM</option>
+                                <option value="8:15 AM">8:15 AM</option>
+                                <option value="8:30 AM">8:30 AM</option>
+                                <option value="8:45 AM">8:45 AM</option>
+
+                                <option value="9:00 AM">9:00 AM</option>
+                                <option value="9:15 AM">9:15 AM</option>
+                                <option value="9:30 AM">9:30 AM</option>
+                                <option value="9:45 AM">9:45 AM</option>
+
+                                <option value="10:00 AM">10:00 AM</option>
+                                <option value="10:15 AM">10:15 AM</option>
+                                <option value="10:30 AM">10:30 AM</option>
+                                <option value="10:45 AM">10:45 AM</option>
+
+                                <option value="11:00 AM">11:00 AM</option>
+                                <option value="11:15 AM">11:15 AM</option>
+                                <option value="11:30 AM">11:30 AM</option>
+                                <option value="11:45 AM">11:45 AM</option>
+
+                                <option value="12:00 PM">12:00 PM</option>
+                                <option value="12:15 PM">12:15 PM</option>
+                                <option value="12:30 PM">12:30 PM</option>
+                                <option value="12:45 PM">12:45 PM</option>
+
+                                <option value="1:00 PM">1:00 PM</option>
+                                <option value="1:15 PM">1:15 PM</option>
+                                <option value="1:30 PM">1:30 PM</option>
+                                <option value="1:45 PM">1:45 PM</option>
+
+                                <option value="2:00 PM">2:00 PM</option>
+                                <option value="2:15 PM">2:15 PM</option>
+                                <option value="2:30 PM">2:30 PM</option>
+                                <option value="2:45 PM">2:45 PM</option>
+
+                                <option value="3:00 PM">3:00 PM</option>
+                                <option value="3:15 PM">3:15 PM</option>
+                                <option value="3:30 PM">3:30 PM</option>
+                                <option value="3:45 PM">3:45 PM</option>
+
+                                <option value="4:00 PM">4:00 PM</option>
+                                <option value="4:15 PM">4:15 PM</option>
+                                <option value="4:30 PM">4:30 PM</option>
+                                <option value="4:45 PM">4:45 PM</option>
+
+                                <option value="5:00 PM">5:00 PM</option>
+                                <option value="5:15 PM">5:15 PM</option>
+                                <option value="5:30 PM">5:30 PM</option>
+                                <option value="5:45 PM">5:45 PM</option>
+
+                                <option value="6:00 PM">6:00 PM</option>
+                                <option value="6:15 PM">6:15 PM</option>
+                                <option value="6:30 PM">6:30 PM</option>
+                                <option value="6:45 PM">6:45 PM</option>
+
+                                <option value="7:00 PM">7:00 PM</option>
+                                <option value="7:15 PM">7:15 PM</option>
+                                <option value="7:30 PM">7:30 PM</option>
+                                <option value="7:45 PM">7:45 PM</option>
+
+                                <option value="8:00 PM">8:00 PM</option>
+                                <option value="8:15 PM">8:15 PM</option>
+                                <option value="8:30 PM">8:30 PM</option>
+                                <option value="8:45 PM">8:45 PM</option>
+
+                                <option value="9:00 PM">9:00 PM</option>
+                                <option value="9:15 PM">9:15 PM</option>
+                                <option value="9:30 PM">9:30 PM</option>
+                                <option value="9:45 PM">9:45 PM</option>
+
+                                <option value="10:00 PM">10:00 PM</option>
+                                <option value="10:15 PM">10:15 PM</option>
+                                <option value="10:30 PM">10:30 PM</option>
+                                <option value="10:45 PM">10:45 PM</option>
+
+                                <option value="11:00 PM">11:00 PM</option>
+                                <option value="11:15 PM">11:15 PM</option>
+                                <option value="11:30 PM">11:30 PM</option>
+                                <option value="11:45 PM">11:45 PM</option>
+                            </select>*@
+                        </div>
+                        @Html.ValidationMessageFor(model=>model.AppointmentTime,"",new{@class="text-danger"})
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="col-md-6 col-sm-6">
+                <div class="services-content">
+                    <h2 class="text-muted">Appointment Requested</h2>
+                    <div class="schedule-appointment">
+                        <table id="tblAppointment" class="table borderless">
+                            <tbody>
+                                <tr>
+                                    <td><label class="form-group text-label" >Address:</label></td>
+                                    <td>
+                                        @Html.TextBoxFor(model=>model.RealtorAddress,new {Class="form-control",@readonly="readonly"})
+                                        @* <input class="form-control" type="text" id="txtAddress"/>*@
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="text-label">Agent</span></td>
+                                    <td>
+                                        @*<input class="form-control" type="text" id="txtAddress"/>*@
+                                        @Html.TextBoxFor(model=>model.AgentName,new {Class="form-control",@readonly="readonly"})
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label class="form-group text-label">Office</label></td>
+                                    <td>
+                                        @Html.TextBoxFor(model=>model.RealtorName,new {Class="form-control",@readonly="readonly"})
+                                        @*<input class="form-control" type="text" id="txtAddress"/>*@
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label class="form-group text-label">Office #</label></td>
+                                    <td>
+                                        @* <input class="form-control" type="text" id="txtAddress"/>*@
+                                        @Html.TextBoxFor(model=>model.RealtorPhoneNumber,new {Class="form-control",@readonly="readonly"})
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><label class="form-group text-label cust-text">Cell #</label></td>
+                                    <td>
+                                        @*<input class="form-control" type="text" id="txtAddress"/>*@
+                                        @Html.TextBoxFor(model=>model.Mobile,new {Class="form-control"})
+                                        @Html.ValidationMessageFor(model=>model.Mobile,"",new{@class="text-danger"})
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label class="form-group text-label cust-text">Email</label></td>
+                                    <td>
+                                        @*<input class="form-control" type="text" id="txtAddress"/>*@
+                                        @Html.TextBoxFor(model=>model.Email,new {Class="form-control"})
+                                        @Html.ValidationMessageFor(model=>model.Email,"",new{@class="text-danger"})
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><strong class="lblStrong text-label">Scheduled</strong></td>
+                                    <td>
+                                        @*<input class="form-control" type="text" id="txtAddress" readonly="readonly"/>*@
+                                        @Html.TextBoxFor(model=>model.AppointmentDate,new {Class="form-control",@readonly="readonly",@id="txtbx_appointmentDate",@name="txtbx_appointmentDate"})
+                                        @*<input class="form-control" type="text" id="txtAddress" readonly="readonly"/>*@
+                                        @Html.TextBoxFor(model=>model.AppointmentTime,new {Class="form-control",@readonly="readonly",@id="txtbx_appointmenttime",@name="txtbx_appointmenttime"})
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td><strong class="lblStrong text-label">Duration</strong></td>
+                                    <td>
+                                        @*<select class="form-control">
+                                            <option value="15">15 minutes</option>
+                                            <option value="30">30 minutes </option>
+                                            <option value="60">1 hour </option>
+                                        </select>*@
+                                        @Html.DropDownListFor(model=>model.DurationListDropDown.SelectedDuration,new SelectList(Model.DurationListDropDown.DurationList,"Value","Key"),"Select Duration",new {Class="form-control"})
+                                        @Html.ValidationMessageFor(model=>model.DurationListDropDown.SelectedDuration,"",new{@class="text-danger"})
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="lblStrong text-label">Type</span></td>
+                                    <td>
+                                        @*<select class="form-control">
+                                            <option value="-1">Select Type</option>
+                                            <option value="Open listing">Open listing</option>
+                                            <option value="Exclusive agency">Exclusive agency</option>
+                                            <option value="Sole agency">Sole agency</option>
+                                        </select>*@
+                                        @Html.DropDownListFor(model=>model.AppointmentTypeDropDown1.SelectedAppointmentType,new SelectList(Model.AppointmentTypeDropDown1.AppointmentTypeList),"Select Type",new {Class="form-control"})
+                                        @Html.ValidationMessageFor(model=>model.AppointmentTypeDropDown1.SelectedAppointmentType,"",new{@class="text-danger"})
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="lblStrong text-label">Type</span></td>
+                                    <td>
+                                        @Html.DropDownListFor(model=>model.AppointmentTypeDropDown2.SelectedAppointmentType,new SelectList(Model.AppointmentTypeDropDown2.AppointmentTypeList),"Select Type",new {Class="form-control"})
+                                        @Html.ValidationMessageFor(model=>model.AppointmentTypeDropDown2.SelectedAppointmentType,"",new{@class="text-danger"})
+                                        @*<select class="form-control">
+                                            <option value="-1">Select Type</option>
+                                            <option value="Open listing">Open listing</option>
+                                            <option value="Exclusive agency">Exclusive agency</option>
+                                            <option value="Sole agency">Sole agency</option>
+                                        </select>*@
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><span class="lblStrong text-label">Type</span></td>
+                                    <td>
+                                        @* <select class="form-control">
+                                            <option value="-1">Select Type</option>
+                                            <option value="Open listing">Open listing</option>
+                                            <option value="Exclusive agency">Exclusive agency</option>
+                                            <option value="Sole agency">Sole agency</option>
+                                        </select>*@
+                                        @Html.DropDownListFor(model=>model.AppointmentTypeDropDown3.SelectedAppointmentType,new SelectList(Model.AppointmentTypeDropDown3.AppointmentTypeList),"Select Type",new {Class="form-control"})
+                                        @Html.ValidationMessageFor(model=>model.AppointmentTypeDropDown3.SelectedAppointmentType,"",new{@class="text-danger"})
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label class="text-label">Message</label></td>
+                                    <td>
+                                        @*<textarea  class="form-control" cols="30" rows="3"></textarea>*@
+                                        @Html.TextAreaFor(model=>model.Message,new {Class="form-control",cols="30",rows="3"})
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><input  class="cust-btn" type="submit" value="SUBMIT"/></td>
+                                    
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Service Section -->
+}

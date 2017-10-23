@@ -1,0 +1,7 @@
+C:\Users\abhishek\Documents\Visual Studio 2012\Projects\Study\Wpf\IERealty\IERealtyDatabases\bin\Debug\IERealtyDatabases.dll.config
+C:\Users\abhishek\Documents\Visual Studio 2012\Projects\Study\Wpf\IERealty\IERealtyDatabases\bin\Debug\IERealtyDatabases.dll
+C:\Users\abhishek\Documents\Visual Studio 2012\Projects\Study\Wpf\IERealty\IERealtyDatabases\bin\Debug\IERealtyDatabases.pdb
+C:\Users\abhishek\Documents\Visual Studio 2012\Projects\Study\Wpf\IERealty\IERealtyDatabases\bin\Debug\EntityFramework.dll
+C:\Users\abhishek\Documents\Visual Studio 2012\Projects\Study\Wpf\IERealty\IERealtyDatabases\bin\Debug\EntityFramework.xml
+C:\Users\abhishek\Documents\Visual Studio 2012\Projects\Study\Wpf\IERealty\IERealtyDatabases\obj\Debug\IERealtyDatabases.dll
+C:\Users\abhishek\Documents\Visual Studio 2012\Projects\Study\Wpf\IERealty\IERealtyDatabases\obj\Debug\IERealtyDatabases.pdb

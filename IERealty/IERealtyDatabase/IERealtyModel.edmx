@@ -1,0 +1,447 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="IERealtyModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="IERealtyModelStoreContainer">
+          <EntitySet Name="tblAddress" EntityType="IERealtyModel.Store.tblAddress" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblAgent" EntityType="IERealtyModel.Store.tblAgent" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblAgentAvaialbleForAppointment" EntityType="IERealtyModel.Store.tblAgentAvaialbleForAppointment" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblBroker" EntityType="IERealtyModel.Store.tblBroker" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblBrokerAgent" EntityType="IERealtyModel.Store.tblBrokerAgent" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblCustomerAppointment" EntityType="IERealtyModel.Store.tblCustomerAppointment" store:Type="Tables" store:Schema="dbo" store:Name="tblCustomerAppointment">
+            <DefiningQuery>SELECT 
+      [tblCustomerAppointment].[Id] AS [Id], 
+      [tblCustomerAppointment].[Mobile] AS [Mobile], 
+      [tblCustomerAppointment].[Email] AS [Email], 
+      [tblCustomerAppointment].[AppointmentDate] AS [AppointmentDate], 
+      [tblCustomerAppointment].[AppointmentTime] AS [AppointmentTime], 
+      [tblCustomerAppointment].[DurationInMinutes] AS [DurationInMinutes], 
+      [tblCustomerAppointment].[Message] AS [Message], 
+      [tblCustomerAppointment].[AvailableAgentId] AS [AvailableAgentId], 
+      [tblCustomerAppointment].[IsActive] AS [IsActive]
+      FROM [dbo].[tblCustomerAppointment] AS [tblCustomerAppointment]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_tblAgent_tblAddress" Association="IERealtyModel.Store.FK_tblAgent_tblAddress">
+            <End Role="tblAddress" EntitySet="tblAddress" />
+            <End Role="tblAgent" EntitySet="tblAgent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblAgentAvaialbleForAppointment_tblAgentAvaialbleForAppointment" Association="IERealtyModel.Store.FK_tblAgentAvaialbleForAppointment_tblAgentAvaialbleForAppointment">
+            <End Role="tblAgentAvaialbleForAppointment" EntitySet="tblAgentAvaialbleForAppointment" />
+            <End Role="tblAgentAvaialbleForAppointment1" EntitySet="tblAgentAvaialbleForAppointment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBroker_tblAddress" Association="IERealtyModel.Store.FK_tblBroker_tblAddress">
+            <End Role="tblAddress" EntitySet="tblAddress" />
+            <End Role="tblBroker" EntitySet="tblBroker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBrokerAgent_tblAgent" Association="IERealtyModel.Store.FK_tblBrokerAgent_tblAgent">
+            <End Role="tblAgent" EntitySet="tblAgent" />
+            <End Role="tblBrokerAgent" EntitySet="tblBrokerAgent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBrokerAgent_tblBroker" Association="IERealtyModel.Store.FK_tblBrokerAgent_tblBroker">
+            <End Role="tblBroker" EntitySet="tblBroker" />
+            <End Role="tblBrokerAgent" EntitySet="tblBrokerAgent" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCustomerAppointment_tblAgentAvaialbleForAppointment" Association="IERealtyModel.Store.FK_tblCustomerAppointment_tblAgentAvaialbleForAppointment">
+            <End Role="tblAgentAvaialbleForAppointment" EntitySet="tblAgentAvaialbleForAppointment" />
+            <End Role="tblCustomerAppointment" EntitySet="tblCustomerAppointment" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tblAddress">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Address" Type="nvarchar" Nullable="false" MaxLength="500" />
+          <Property Name="City" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Province" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="Country" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="PostalCode" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblAgent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="300" />
+          <Property Name="AddressId" Type="bigint" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblAgentAvaialbleForAppointment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AgentId" Type="bigint" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblBroker">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="300" />
+          <Property Name="AddressId" Type="bigint" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblBrokerAgent">
+          <Key>
+            <PropertyRef Name="AgentId" />
+            <PropertyRef Name="BrokerId" />
+          </Key>
+          <Property Name="AgentId" Type="bigint" Nullable="false" />
+          <Property Name="BrokerId" Type="bigint" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'IERealty.dbo.tblCustomerAppointment' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="tblCustomerAppointment">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Mobile" />
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="AppointmentDate" />
+            <PropertyRef Name="AppointmentTime" />
+            <PropertyRef Name="DurationInMinutes" />
+            <PropertyRef Name="AvailableAgentId" />
+            <PropertyRef Name="IsActive" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" />
+          <Property Name="Mobile" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="300" />
+          <Property Name="AppointmentDate" Type="date" Nullable="false" />
+          <Property Name="AppointmentTime" Type="time" Nullable="false" />
+          <Property Name="DurationInMinutes" Type="bigint" Nullable="false" />
+          <Property Name="Message" Type="nvarchar" MaxLength="500" />
+          <Property Name="AvailableAgentId" Type="bigint" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tblAgent_tblAddress">
+          <End Role="tblAddress" Type="IERealtyModel.Store.tblAddress" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblAgent" Type="IERealtyModel.Store.tblAgent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAddress">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblAgent">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblAgentAvaialbleForAppointment_tblAgentAvaialbleForAppointment">
+          <End Role="tblAgentAvaialbleForAppointment" Type="IERealtyModel.Store.tblAgentAvaialbleForAppointment" Multiplicity="1" />
+          <End Role="tblAgentAvaialbleForAppointment1" Type="IERealtyModel.Store.tblAgentAvaialbleForAppointment" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tblAgentAvaialbleForAppointment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblAgentAvaialbleForAppointment1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBroker_tblAddress">
+          <End Role="tblAddress" Type="IERealtyModel.Store.tblAddress" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblBroker" Type="IERealtyModel.Store.tblBroker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAddress">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblBroker">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBrokerAgent_tblAgent">
+          <End Role="tblAgent" Type="IERealtyModel.Store.tblAgent" Multiplicity="1" />
+          <End Role="tblBrokerAgent" Type="IERealtyModel.Store.tblBrokerAgent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAgent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblBrokerAgent">
+              <PropertyRef Name="AgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBrokerAgent_tblBroker">
+          <End Role="tblBroker" Type="IERealtyModel.Store.tblBroker" Multiplicity="1" />
+          <End Role="tblBrokerAgent" Type="IERealtyModel.Store.tblBrokerAgent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBroker">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblBrokerAgent">
+              <PropertyRef Name="BrokerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCustomerAppointment_tblAgentAvaialbleForAppointment">
+          <End Role="tblAgentAvaialbleForAppointment" Type="IERealtyModel.Store.tblAgentAvaialbleForAppointment" Multiplicity="1" />
+          <End Role="tblCustomerAppointment" Type="IERealtyModel.Store.tblCustomerAppointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAgentAvaialbleForAppointment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblCustomerAppointment">
+              <PropertyRef Name="AvailableAgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="IERealtyModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="IERealtyEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="tblAddresses" EntityType="IERealtyModel.tblAddress" />
+          <EntitySet Name="tblAgents" EntityType="IERealtyModel.tblAgent" />
+          <EntitySet Name="tblAgentAvaialbleForAppointments" EntityType="IERealtyModel.tblAgentAvaialbleForAppointment" />
+          <EntitySet Name="tblBrokers" EntityType="IERealtyModel.tblBroker" />
+          <EntitySet Name="tblCustomerAppointments" EntityType="IERealtyModel.tblCustomerAppointment" />
+          <AssociationSet Name="FK_tblAgent_tblAddress" Association="IERealtyModel.FK_tblAgent_tblAddress">
+            <End Role="tblAddress" EntitySet="tblAddresses" />
+            <End Role="tblAgent" EntitySet="tblAgents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblBroker_tblAddress" Association="IERealtyModel.FK_tblBroker_tblAddress">
+            <End Role="tblAddress" EntitySet="tblAddresses" />
+            <End Role="tblBroker" EntitySet="tblBrokers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblAgentAvaialbleForAppointment_tblAgentAvaialbleForAppointment" Association="IERealtyModel.FK_tblAgentAvaialbleForAppointment_tblAgentAvaialbleForAppointment">
+            <End Role="tblAgentAvaialbleForAppointment" EntitySet="tblAgentAvaialbleForAppointments" />
+            <End Role="tblAgentAvaialbleForAppointment1" EntitySet="tblAgentAvaialbleForAppointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblCustomerAppointment_tblAgentAvaialbleForAppointment" Association="IERealtyModel.FK_tblCustomerAppointment_tblAgentAvaialbleForAppointment">
+            <End Role="tblAgentAvaialbleForAppointment" EntitySet="tblAgentAvaialbleForAppointments" />
+            <End Role="tblCustomerAppointment" EntitySet="tblCustomerAppointments" />
+          </AssociationSet>
+          <AssociationSet Name="tblBrokerAgent" Association="IERealtyModel.tblBrokerAgent">
+            <End Role="tblAgent" EntitySet="tblAgents" />
+            <End Role="tblBroker" EntitySet="tblBrokers" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tblAddress">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Province" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Country" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="PostalCode" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblAgents" Relationship="IERealtyModel.FK_tblAgent_tblAddress" FromRole="tblAddress" ToRole="tblAgent" />
+          <NavigationProperty Name="tblBrokers" Relationship="IERealtyModel.FK_tblBroker_tblAddress" FromRole="tblAddress" ToRole="tblBroker" />
+        </EntityType>
+        <EntityType Name="tblAgent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="300" Unicode="true" FixedLength="false" />
+          <Property Name="AddressId" Type="Int64" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblAddress" Relationship="IERealtyModel.FK_tblAgent_tblAddress" FromRole="tblAgent" ToRole="tblAddress" />
+          <NavigationProperty Name="tblBrokers" Relationship="IERealtyModel.tblBrokerAgent" FromRole="tblAgent" ToRole="tblBroker" />
+        </EntityType>
+        <EntityType Name="tblAgentAvaialbleForAppointment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="AgentId" Type="Int64" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblAgentAvaialbleForAppointment1" Relationship="IERealtyModel.FK_tblAgentAvaialbleForAppointment_tblAgentAvaialbleForAppointment" FromRole="tblAgentAvaialbleForAppointment" ToRole="tblAgentAvaialbleForAppointment1" />
+          <NavigationProperty Name="tblAgentAvaialbleForAppointment2" Relationship="IERealtyModel.FK_tblAgentAvaialbleForAppointment_tblAgentAvaialbleForAppointment" FromRole="tblAgentAvaialbleForAppointment1" ToRole="tblAgentAvaialbleForAppointment" />
+          <NavigationProperty Name="tblCustomerAppointments" Relationship="IERealtyModel.FK_tblCustomerAppointment_tblAgentAvaialbleForAppointment" FromRole="tblAgentAvaialbleForAppointment" ToRole="tblCustomerAppointment" />
+        </EntityType>
+        <EntityType Name="tblBroker">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="300" Unicode="true" FixedLength="false" />
+          <Property Name="AddressId" Type="Int64" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblAddress" Relationship="IERealtyModel.FK_tblBroker_tblAddress" FromRole="tblBroker" ToRole="tblAddress" />
+          <NavigationProperty Name="tblAgents" Relationship="IERealtyModel.tblBrokerAgent" FromRole="tblBroker" ToRole="tblAgent" />
+        </EntityType>
+        <EntityType Name="tblCustomerAppointment">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Mobile" />
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="AppointmentDate" />
+            <PropertyRef Name="AppointmentTime" />
+            <PropertyRef Name="DurationInMinutes" />
+            <PropertyRef Name="AvailableAgentId" />
+            <PropertyRef Name="IsActive" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="Mobile" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="300" Unicode="true" FixedLength="false" />
+          <Property Name="AppointmentDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="AppointmentTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="DurationInMinutes" Type="Int64" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="AvailableAgentId" Type="Int64" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblAgentAvaialbleForAppointment" Relationship="IERealtyModel.FK_tblCustomerAppointment_tblAgentAvaialbleForAppointment" FromRole="tblCustomerAppointment" ToRole="tblAgentAvaialbleForAppointment" />
+        </EntityType>
+        <Association Name="FK_tblAgent_tblAddress">
+          <End Role="tblAddress" Type="IERealtyModel.tblAddress" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblAgent" Type="IERealtyModel.tblAgent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAddress">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblAgent">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblBroker_tblAddress">
+          <End Role="tblAddress" Type="IERealtyModel.tblAddress" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblBroker" Type="IERealtyModel.tblBroker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAddress">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblBroker">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblAgentAvaialbleForAppointment_tblAgentAvaialbleForAppointment">
+          <End Role="tblAgentAvaialbleForAppointment" Type="IERealtyModel.tblAgentAvaialbleForAppointment" Multiplicity="1" />
+          <End Role="tblAgentAvaialbleForAppointment1" Type="IERealtyModel.tblAgentAvaialbleForAppointment" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tblAgentAvaialbleForAppointment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblAgentAvaialbleForAppointment1">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblCustomerAppointment_tblAgentAvaialbleForAppointment">
+          <End Role="tblAgentAvaialbleForAppointment" Type="IERealtyModel.tblAgentAvaialbleForAppointment" Multiplicity="1" />
+          <End Role="tblCustomerAppointment" Type="IERealtyModel.tblCustomerAppointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAgentAvaialbleForAppointment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblCustomerAppointment">
+              <PropertyRef Name="AvailableAgentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblBrokerAgent">
+          <End Role="tblAgent" Type="IERealtyModel.tblAgent" Multiplicity="*" />
+          <End Role="tblBroker" Type="IERealtyModel.tblBroker" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="IERealtyModelStoreContainer" CdmEntityContainer="IERealtyEntities">
+          <EntitySetMapping Name="tblAddresses">
+            <EntityTypeMapping TypeName="IERealtyModel.tblAddress">
+              <MappingFragment StoreEntitySet="tblAddress">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAgents">
+            <EntityTypeMapping TypeName="IERealtyModel.tblAgent">
+              <MappingFragment StoreEntitySet="tblAgent">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAgentAvaialbleForAppointments">
+            <EntityTypeMapping TypeName="IERealtyModel.tblAgentAvaialbleForAppointment">
+              <MappingFragment StoreEntitySet="tblAgentAvaialbleForAppointment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AgentId" ColumnName="AgentId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBrokers">
+            <EntityTypeMapping TypeName="IERealtyModel.tblBroker">
+              <MappingFragment StoreEntitySet="tblBroker">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCustomerAppointments">
+            <EntityTypeMapping TypeName="IERealtyModel.tblCustomerAppointment">
+              <MappingFragment StoreEntitySet="tblCustomerAppointment">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
+                <ScalarProperty Name="AppointmentTime" ColumnName="AppointmentTime" />
+                <ScalarProperty Name="DurationInMinutes" ColumnName="DurationInMinutes" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="AvailableAgentId" ColumnName="AvailableAgentId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="tblBrokerAgent" TypeName="IERealtyModel.tblBrokerAgent" StoreEntitySet="tblBrokerAgent">
+            <EndProperty Name="tblAgent">
+              <ScalarProperty Name="Id" ColumnName="AgentId" />
+            </EndProperty>
+            <EndProperty Name="tblBroker">
+              <ScalarProperty Name="Id" ColumnName="BrokerId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

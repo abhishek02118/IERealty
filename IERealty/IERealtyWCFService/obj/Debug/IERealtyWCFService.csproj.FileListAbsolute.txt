@@ -1,0 +1,9 @@
+C:\Users\abhishek\Documents\Visual Studio 2012\Projects\Study\Wpf\IERealty\IERealtyWCFService\obj\Debug\IERealtyWCFService.csprojResolveAssemblyReference.cache
+C:\Users\abhishek\Documents\Visual Studio 2012\Projects\Study\Wpf\IERealty\IERealtyWCFService\bin\IERealtyWCFService.dll
+C:\Users\abhishek\Documents\Visual Studio 2012\Projects\Study\Wpf\IERealty\IERealtyWCFService\bin\IERealtyWCFService.pdb
+C:\Users\abhishek\Documents\Visual Studio 2012\Projects\Study\Wpf\IERealty\IERealtyWCFService\bin\IERealtyDatabases.dll
+C:\Users\abhishek\Documents\Visual Studio 2012\Projects\Study\Wpf\IERealty\IERealtyWCFService\bin\EntityFramework.dll
+C:\Users\abhishek\Documents\Visual Studio 2012\Projects\Study\Wpf\IERealty\IERealtyWCFService\bin\IERealtyDatabases.pdb
+C:\Users\abhishek\Documents\Visual Studio 2012\Projects\Study\Wpf\IERealty\IERealtyWCFService\bin\EntityFramework.xml
+C:\Users\abhishek\Documents\Visual Studio 2012\Projects\Study\Wpf\IERealty\IERealtyWCFService\obj\Debug\IERealtyWCFService.dll
+C:\Users\abhishek\Documents\Visual Studio 2012\Projects\Study\Wpf\IERealty\IERealtyWCFService\obj\Debug\IERealtyWCFService.pdb

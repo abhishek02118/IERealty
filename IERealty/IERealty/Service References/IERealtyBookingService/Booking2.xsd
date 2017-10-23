@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/IERealtyDatabases.Databases.SqlServer" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/IERealtyDatabases.Databases.SqlServer" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:58370/Booking.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="tblCustomerAppointment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AppointmentDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="AppointmentTime" type="ser:duration" />
+      <xs:element minOccurs="0" name="AvailableAgentId" type="xs:long" />
+      <xs:element minOccurs="0" name="DurationInMinutes" type="xs:long" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Mobile" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="tblAgentAvaialbleForAppointment" nillable="true" type="tns:tblAgentAvaialbleForAppointment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="tblCustomerAppointment" nillable="true" type="tns:tblCustomerAppointment" />
+  <xs:complexType name="tblAgentAvaialbleForAppointment">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AgentId" type="xs:long" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="tblAgent" nillable="true" type="tns:tblAgent" />
+      <xs:element minOccurs="0" name="tblCustomerAppointments" nillable="true" type="tns:ArrayOftblCustomerAppointment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="tblAgentAvaialbleForAppointment" nillable="true" type="tns:tblAgentAvaialbleForAppointment" />
+  <xs:complexType name="tblAgent">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AddressId" type="xs:long" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="tblAddress" nillable="true" type="tns:tblAddress" />
+      <xs:element minOccurs="0" name="tblAgentAvaialbleForAppointments" nillable="true" type="tns:ArrayOftblAgentAvaialbleForAppointment" />
+      <xs:element minOccurs="0" name="tblBrokerAgents" nillable="true" type="tns:ArrayOftblBrokerAgent" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="tblAgent" nillable="true" type="tns:tblAgent" />
+  <xs:complexType name="tblAddress">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Country" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="PostalCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Province" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="tblAgents" nillable="true" type="tns:ArrayOftblAgent" />
+      <xs:element minOccurs="0" name="tblBrokers" nillable="true" type="tns:ArrayOftblBroker" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="tblAddress" nillable="true" type="tns:tblAddress" />
+  <xs:complexType name="ArrayOftblAgent">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tblAgent" nillable="true" type="tns:tblAgent" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOftblAgent" nillable="true" type="tns:ArrayOftblAgent" />
+  <xs:complexType name="ArrayOftblBroker">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tblBroker" nillable="true" type="tns:tblBroker" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOftblBroker" nillable="true" type="tns:ArrayOftblBroker" />
+  <xs:complexType name="tblBroker">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AddressId" type="xs:long" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="tblAddress" nillable="true" type="tns:tblAddress" />
+      <xs:element minOccurs="0" name="tblBrokerAgents" nillable="true" type="tns:ArrayOftblBrokerAgent" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="tblBroker" nillable="true" type="tns:tblBroker" />
+  <xs:complexType name="ArrayOftblBrokerAgent">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tblBrokerAgent" nillable="true" type="tns:tblBrokerAgent" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOftblBrokerAgent" nillable="true" type="tns:ArrayOftblBrokerAgent" />
+  <xs:complexType name="tblBrokerAgent">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AgentId" type="xs:long" />
+      <xs:element minOccurs="0" name="BrokerId" type="xs:long" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="tblAgent" nillable="true" type="tns:tblAgent" />
+      <xs:element minOccurs="0" name="tblBroker" nillable="true" type="tns:tblBroker" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="tblBrokerAgent" nillable="true" type="tns:tblBrokerAgent" />
+  <xs:complexType name="ArrayOftblAgentAvaialbleForAppointment">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tblAgentAvaialbleForAppointment" nillable="true" type="tns:tblAgentAvaialbleForAppointment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOftblAgentAvaialbleForAppointment" nillable="true" type="tns:ArrayOftblAgentAvaialbleForAppointment" />
+  <xs:complexType name="ArrayOftblCustomerAppointment">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tblCustomerAppointment" nillable="true" type="tns:tblCustomerAppointment" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOftblCustomerAppointment" nillable="true" type="tns:ArrayOftblCustomerAppointment" />
+</xs:schema>
